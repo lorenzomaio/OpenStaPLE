@@ -47,6 +47,8 @@ double_soa * mag_obs_im;     // imaginary part of the 'algebra-prefix'
 
 double_soa * topo_loc; // topological charge auxiliary
 
+double_soa * beta_shift; // (1+shift)
+
 thmat_soa * momenta; // gauge field evolution
 thmat_soa * momenta_backup; // gauge field evolution - reversibility test
 tamat_soa * ipdot_acc; // gauge field evolution
@@ -188,6 +190,9 @@ void mem_alloc_extended()
 																						2*sizeof(double_soa));
 	#pragma acc enter data create(topo_loc[0:2])  
 
+	allocation_check = POSIX_MEMALIGN_WRAPPER((void **)&beta_shift,ALIGN,
+																						2*sizeof(double_soa));
+	#pragma acc enter data create(beta_shift[0:2])  
 
 	//the double bracket in the setfree macro MUST be there (because of operators precedence)
 	allocation_check =  POSIX_MEMALIGN_WRAPPER((void **)&aux_conf_acc, ALIGN, 8*sizeof(su3_soa)); 

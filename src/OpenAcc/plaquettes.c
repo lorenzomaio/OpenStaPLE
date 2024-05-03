@@ -55,6 +55,10 @@ double calc_loc_plaquettes_nnptrick(__restrict const su3_soa * const u,
 					d_complex tmp_aux = matrix_trace_absent_stag_phase(&loc_plaq[parity],idxh);
 					tr_local_plaqs[parity].c[idxh] = creal(tmp_aux)+cimag(tmp_aux)*I;
 		
+#ifdef SLQCD 
+					tr_local_plaqs[parity].c[idxh] *= beta_shift[parity].d[idxh];
+#endif
+
 #ifdef PAR_TEMP
 					// K_mu_nu computation;
 					double K_mu_nu=(u[dir_muA].K.d[idxh])*(u[dir_nuB].K.d[idxpmu])*(u[dir_muC].K.d[idxpnu])*(u[dir_nuD].K.d[idxh]);
