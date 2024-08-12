@@ -15,6 +15,7 @@ typedef struct action_param_t{
 	char topo_file_path[20];
 	int topo_stout_steps;
 	double topo_rho;
+	double noise_shift;
 } action_param;
 
 extern double grid[];

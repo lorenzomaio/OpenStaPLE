@@ -60,6 +60,10 @@ double calc_loc_rectangles_2x1_nnptrick(__restrict const su3_soa * const u,
 					mat1_times_conj_mat2_into_mat1_absent_stag_phases(&loc_plaq[parity],idxh,&u[dir_nuF],idxh);               // loc_rect = loc_rect * F
 					tr_local_plaqs[parity].c[idxh] = matrix_trace_absent_stag_phase(&loc_plaq[parity],idxh);
 
+#ifdef SLQCD 
+					tr_local_plaqs[parity].c[idxh] *= beta_shift[parity].d[idxh];
+#endif
+
 #ifdef PAR_TEMP
 					// K_mu_nu computation;
 					double K_mu_nu = (u[dir_muA].K.d[idxh])*(u[dir_muB].K.d[idxpmu])*(u[dir_nuC].K.d[idxpmupmu]) * 
@@ -135,6 +139,10 @@ double calc_loc_rectangles_1x2_nnptrick(__restrict const su3_soa * const u,
 					mat1_times_conj_mat2_into_mat1_absent_stag_phases(&loc_plaq[parity],idxh,&u[dir_nuF],idxh);               // loc_rect = loc_rect * F
 
 					tr_local_plaqs[parity].c[idxh] = matrix_trace_absent_stag_phase(&loc_plaq[parity],idxh);
+
+#ifdef SLQCD 
+					tr_local_plaqs[parity].c[idxh] *= beta_shift[parity].d[idxh];
+#endif
 
 #ifdef PAR_TEMP
 					// K_mu_nu computation;

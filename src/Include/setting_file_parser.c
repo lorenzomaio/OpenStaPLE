@@ -420,6 +420,7 @@ int read_action_info(action_param *act_par,char filelines[MAXLINES][MAXLINELENGT
 	const char topo_file_path_def[] = "ToPotential";
 	const int topo_stout_steps_def = 0;
 	const double topo_stout_rho_def = 0.15;
+	const double noise_shift_def = 0.0;
 	const char topo_act_comment[] = "#Set to 1 to enable multicanonical topological potential.";
 	par_info ap[]={
 								 (par_info){(void*) &(act_par->beta)            , TYPE_DOUBLE, "Beta"          , NULL, NULL},
@@ -430,7 +431,12 @@ int read_action_info(action_param *act_par,char filelines[MAXLINES][MAXLINELENGT
 								 (par_info){(void*) &(act_par->width)           , TYPE_DOUBLE, "Width"         , (const void*) &width_def, NULL},
 								 (par_info){(void*) &(act_par->topo_file_path)  , TYPE_STR   , "TopoPath"      , (const void*) &topo_file_path_def, NULL},
 								 (par_info){(void*) &(act_par->topo_stout_steps), TYPE_INT   , "TopoStoutSteps", (const void*) &topo_stout_steps_def, NULL},
-								 (par_info){(void*) &(act_par->topo_rho)        , TYPE_DOUBLE, "TopoRho"       , (const void*) &stout_rho_def, NULL}
+								 (par_info){(void*) &(act_par->topo_rho)        , TYPE_DOUBLE, "TopoRho"       , (const void*) &stout_rho_def, NULL},
+#ifndef PAR_TEMP        
+								 (par_info){(void*) IGNORE_IT, TYPE_DOUBLE, "NoiseShift"    , (const void*) &noise_shift_def, NULL}
+#else
+								 (par_info){(void*) &(act_par->noise_shift)     , TYPE_DOUBLE, "NoiseShift"    , (const void*) &noise_shift_def, NULL}
+#endif
 	};			   
 				   
 	// from here on, you should not have to modify anything.

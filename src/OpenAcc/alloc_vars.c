@@ -47,7 +47,7 @@ double_soa * mag_obs_im;     // imaginary part of the 'algebra-prefix'
 
 double_soa * topo_loc; // topological charge auxiliary
 
-double_soa * beta_shift; // (1+shift)
+double_soa * beta_shift; // (1+shift/beta)
 
 thmat_soa * momenta; // gauge field evolution
 thmat_soa * momenta_backup; // gauge field evolution - reversibility test
